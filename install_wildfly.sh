@@ -3,8 +3,8 @@
 #Verion del Servidor Wildfly
 WILDFLY_VERSION=18.0.1.Final
 #Tamaño de memoria a asignar
-MEMORY_RAM=512m
-MEMORY_WSP=256m
+MEMORY_RAM=1545m
+MEMORY_WSP=1024m
 
 #Actualizamos
 sudo apt-get update
@@ -37,8 +37,8 @@ chmod 777 -R wildfly/
 echo 'JAVA_OPTS="$JAVA_OPTS -Duser.timezone=GMT-5"' >> wildfly/bin/standalone.conf
 
 # Damos mayor memoria al servidor
-sed -i "s/-Xmx512m/-Xmx$MEMORY_RAM/g" wildfly/bin/standalone.conf
-sed -i "s/-XX:MaxMetaspaceSize=256m/-XX:MaxMetaspaceSize=$MEMORY_WSP/g" wildfly/bin/standalone.conf
+sed -i "s/-Xmx1545m/-Xmx$MEMORY_RAM/g" wildfly/bin/standalone.conf
+sed -i "s/-XX:MaxMetaspaceSize=1024m/-XX:MaxMetaspaceSize=$MEMORY_WSP/g" wildfly/bin/standalone.conf
 
 # Seteamos valor
 export LAUNCH_JBOSS_IN_BACKGROUND=true
@@ -47,23 +47,23 @@ export LAUNCH_JBOSS_IN_BACKGROUND=true
 ./wildfly/bin/add-user.sh admin admin --silent
 
 #Extra - Configuraciones por si acaso - la mayor parte del tiempo no se usaran
-sed -i 's/jboss.http.port:8080/jboss.http.port:80/g' wildfly/standalone/configuration/standalone.xml
+sed -i 's/jboss.http.port:8080/jboss.http.port:8080/g' wildfly/standalone/configuration/standalone.xml
 sed -i 's/inet-address value="${jboss.bind.address.management:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone.xml
 sed -i 's/inet-address value="${jboss.bind.address:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone.xml
-sed -i 's/jboss.http.port:8080/jboss.http.port:80/g' wildfly/standalone/configuration/standalone-ha.xml
+sed -i 's/jboss.http.port:8080/jboss.http.port:8080/g' wildfly/standalone/configuration/standalone-ha.xml
 sed -i 's/inet-address value="${jboss.bind.address.management:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-ha.xml
 sed -i 's/inet-address value="${jboss.bind.address.private:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-ha.xml
 sed -i 's/inet-address value="${jboss.bind.address:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-ha.xml
-sed -i 's/jboss.http.port:8080/jboss.http.port:80/g' wildfly/standalone/configuration/standalone-full.xml
+sed -i 's/jboss.http.port:8080/jboss.http.port:8080/g' wildfly/standalone/configuration/standalone-full.xml
 sed -i 's/inet-address value="${jboss.bind.address.management:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-full.xml
 sed -i 's/inet-address value="${jboss.bind.address.unsecure:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-full.xml
 sed -i 's/inet-address value="${jboss.bind.address:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-full.xml
-sed -i 's/jboss.http.port:8080/jboss.http.port:80/g' wildfly/standalone/configuration/standalone-full-ha.xml
+sed -i 's/jboss.http.port:8080/jboss.http.port:8080/g' wildfly/standalone/configuration/standalone-full-ha.xml
 sed -i 's/inet-address value="${jboss.bind.address.management:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-full-ha.xml
 sed -i 's/inet-address value="${jboss.bind.address.private:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-full-ha.xml
 sed -i 's/inet-address value="${jboss.bind.address:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-full-ha.xml
 sed -i 's/inet-address value="${jboss.bind.address.unsecure:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-full-ha.xml
-sed -i 's/jboss.http.port:8080/jboss.http.port:80/g' wildfly/standalone/configuration/standalone-load-balancer.xml
+sed -i 's/jboss.http.port:8080/jboss.http.port:8080/g' wildfly/standalone/configuration/standalone-load-balancer.xml
 sed -i 's/inet-address value="${jboss.bind.address.management:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-load-balancer.xml
 sed -i 's/inet-address value="${jboss.bind.address.private:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-load-balancer.xml
 sed -i 's/inet-address value="${jboss.bind.address:127.0.0.1}"/any-address/g' wildfly/standalone/configuration/standalone-load-balancer.xml
